@@ -5,9 +5,16 @@ const srcPath = path.resolve(__dirname, 'src')
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    open: true
+  },
   plugins: [vue()],
   resolve: {
     alias: [
+      {
+        find: 'vue',
+        replacement: 'vue/dist/vue.esm-bundler.js'
+      },
       {
         find: '@',
         replacement: srcPath

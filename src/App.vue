@@ -68,6 +68,7 @@ for (const path in modules) {
   addPathsToMenus(menus, route.split('/'))
 
   const compName = route.replace(/\//g, '-')
+  // 此处要使用vue的异步组件定义方法，不然无法正确注册组件
   components[compName] = defineAsyncComponent(module)
 }
 

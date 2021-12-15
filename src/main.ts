@@ -9,7 +9,11 @@ import '@/assets/scss/global.scss'
 // 该应用实例是用来在应用中注册“全局”组件的
 const app = createApp(App)
 app.use(ElementPlus)
+
+// 全局注册组件
 app.component('AsideMenu', AsideMenu)
+// 全局注册指令
+// app.directive('xxx', {})
 
 // mount 不返回应用本身。它返回的是根组件实例。
 const vm = app.mount('#app')

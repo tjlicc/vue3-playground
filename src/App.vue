@@ -60,11 +60,11 @@ const menus: Array<MenuItem> = [];
 const components: Components = {};
 
 // 以下代码适用于vite
-const modules = import.meta.glob('./playground/**/*.vue')
+const modules = import.meta.glob('./playground/**/*{.vue,.tsx}')
 for (const path in modules) {
   const module = modules[path]
 
-  const route = path.replace(/(\.\/playground\/)|(\.vue)/g, '')
+  const route = path.replace(/(\.\/playground\/)|(\.vue)|(\.tsx)/g, '')
   addPathsToMenus(menus, route.split('/'))
 
   const compName = route.replace(/\//g, '-')

@@ -8,6 +8,9 @@ export default defineConfig({
   server: {
     open: true
   },
+  preview: {
+    host: true
+  },
   plugins: [vue()],
   resolve: {
     alias: [

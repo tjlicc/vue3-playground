@@ -1,11 +1,11 @@
-# Vue 3 + Typescript + Vite
+# Vue3特性展示
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+本项目用于展示vue3下的一些特性，后续可以作为其他项目的代码参考
 
-## Recommended IDE Setup
+## 推荐的IDE配置
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
-## Type Support For `.vue` Imports in TS
+## 本地预览部署效果
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+运行`npm run serve`之前一定要运行`npm run build`，以保证项目根目录下存在`dist`目录，否则无法看到预期的效果。此外，运行`npm run serve`之前最好还要在`vite.config.ts`中配置了`preview`，否则在一些系统上可能会无法看到预期的效果（mac上5000端口可能被系统进程占用，如果不配`preview`，vite不会自动更换端口号，导致最终页面无法访问）

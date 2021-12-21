@@ -23,10 +23,12 @@ import {
   inject,
   onMounted,
   provide,
+  reactive,
   ref,
   toRef,
   toRefs,
   watch,
+  watchEffect,
 } from "vue";
 
 const compWithCompositionApi = defineComponent({
@@ -60,8 +62,11 @@ const compWithCompositionApi = defineComponent({
     // 暴露公共 property (函数)
     console.log("expose", context.expose);
 
-    // ref函数接收任意类型的参数，会返回一个响应式对象{value: initialValue}，该返回值在任何地方都保持响应性
-    const counter = ref(0);
+    // ref函数接收任意类型t的参数，会返回一个响应式对象{value: initialValue}，该返回值在任何地方都保持响应性
+    const counter = ref<number>(0);
+
+    // ref函数适合对值类型变量创建响应性；reactive函数适合对引用类型创建响应性
+    const reactiveObj = reactive({ foo: "bar" });
 
     const reset = () => {
       counter.value = 0;
@@ -82,8 +87,30 @@ const compWithCompositionApi = defineComponent({
       console.log("The new counter value is: ", counter.value);
     });
 
+    // 立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数。
+    // watchEffect无法获取依赖变更前的值，这种场景就需要使用watch
+    watchEffect((onInvalidate) => {
+      console.log("counter变更：", counter.value);
+      // const token = performAsyncOperation(id.value)
+      onInvalidate(() => {
+        // onInvalidate会在副作用即将重新执行时生效，可以在此处考虑做一些取消操作
+        // 如watchEffect中进行网络请求，就可以在onInvalidate中取消请求
+        // token.cancel()
+      });
+    });
+
     // setup中可以通过computed函数来获取计算属性
-    const twiceTheCounter = computed(() => counter.value * 2);
+    const twiceTheCounter = computed(() => counter.value * 2, {
+      // onTrack 和 onTrigger 仅在开发模式下生效
+      // onTrack(e) {
+      //   // 当 counter.value 作为依赖被追踪时触发
+      //   debugger;
+      // },
+      // onTrigger(e) {
+      //   // 当 counter.value 被修改时触发
+      //   debugger;
+      // },
+    });
 
     // setup中可以使用provide和inject
     // 直接传值会失去响应性

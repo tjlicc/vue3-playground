@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import MenuItem from '@/types/menu-item'
-import Menus from '@/types/menus'
+import MenuItem from '@/typings/menu-item'
+import Menus from '@/typings/menus'
 import { defineComponent } from 'vue'
 import AsideMenuItems from './AsideMenuItems.vue'
 

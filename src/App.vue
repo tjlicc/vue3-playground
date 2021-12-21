@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue'
-import MenuItem from './types/menu-item'
+import MenuItem from './typings/menu-item'
 
 interface Components {
   [key: string]: { [key: string]: any; }

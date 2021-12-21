@@ -17,12 +17,17 @@
 </template>
 
 <script lang="ts" setup>
-import MenuItem from "@/types/menu-item";
-import Menus from "@/types/menus";
+import MenuItem from "@/typings/menu-item";
+import Menus from "@/typings/menus";
+import { PropType } from "vue";
 
-defineProps<{
-  menus: Menus;
-}>();
+// 使用defineProps声明ts类型的两种情况
+// defineProps<{
+//   menus: Menus;
+// }>();
+defineProps({
+  menus: Array as PropType<Menus>,
+});
 
 const emit = defineEmits(["item-click"]);
 
